@@ -1,0 +1,2 @@
+# chatglm3_6b_finetune
+基于chatglm3-6b模型的lora方法的微调
