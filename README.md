@@ -314,3 +314,34 @@ Loading checkpoint shards: 100%|████████████████
 您好，我是 海绵宝宝，一个由 微妙物联人工智能实验室 开发的 AI 助手，很高兴认识您。请问我能为您做些什么？
 >>> 
 ```
+### 4. 数据集转换
+新增了3个json文件，用作数据集转换测试的样本：
+1. oaast_sft_zh.json 通用格式（alpaca、llama风格）。
+2. self_cognition.json 自我认知数据集，也是alpaca、llama风格。
+3. dev.json chatglm的老格式。
+
+新增数据集格式转换工具：
+dataset2glm3.py
+
+```
+python3 dataset2glm3.py --help
+usage: dataset2glm3.py [-h] [--type TYPE] [--inputfile INPUTFILE] [--outfile OUTFILE] [--rulemap RULEMAP]
+
+chatglm3数据集格式转换客户端示例
+一般通用格式 alpaca：
+ [ { "instruction": "保持健康的三个提示。", "input": "", "output":
+"以下是保持健康的三个提示：保持身体活动。每天做适当的身体运动" }, ]
+自定义格式： {"content_in":"instruction","content_out":"output"}
+自己在 --rulemap中写一个字典描述： "content_in“对应输入的内容字段 "content_out"对应输出的内容字段
+微妙物联人工智能实验室 2024-4 Gaoshine。
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --type TYPE           数据集格式
+  --inputfile INPUTFILE
+                        输入的文件名称
+  --outfile OUTFILE     输出的文件名称
+  --rulemap RULEMAP     转换规则
+
+```
+代码比较简单，可以自己定义字典实现其他格式数据集转换（自己在 --rulemap中写一个字典描述： "content_in“对应输入的内容字段 "content_out"对应输出的内容字段）
